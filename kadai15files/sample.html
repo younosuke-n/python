@@ -1,0 +1,191 @@
+<html>
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=UTF-8">
+<meta HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<title>導入とPythonのデータ型</title>
+
+<style type="text/css">
+<!--
+body {background-color: darkseagreen;
+      line-height: 150%
+}
+
+h1 {color: white; 
+    padding: 10 10 10 10;
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro W3", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+    text-shadow: 4px 4px 0px #000000;
+    background: -ms-linear-gradient(left, #0000ff, rgba(0,0,255,0));
+    background: -moz-linear-gradient(left, #0000ff, rgba(0,0,255,0));
+    background: -webkit-gradient(linear, left top, right top, from(#0000ff), to(rgba(0,0,255,0)));
+}
+
+h2 {padding: 7px;
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro W3", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+    text-shadow: 3px 3px 0px #000000;
+    color: white;
+    background: royalblue
+}
+
+h3 {padding: 6px;
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro W3", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+    text-shadow: 3px 3px 0px #000000;
+    color: white;
+    background: teal;
+}
+
+h4 {font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro W3", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+}
+
+div.solid { 
+	/*border: thin black solid;*/
+	border: 1px solid gray; 
+	padding: 10px;
+	width:80%;
+}
+
+div.program { 
+	/*border: thin black solid;*/
+	border: 1px solid gray; 
+	padding: 10px;
+	width:80%;
+	line-height: 100%;
+	font-family: "ＭＳ ゴシック";
+}
+
+pre.program {
+    font-family: Courier, monospace;
+}
+
+img {
+    padding: 6px
+}
+
+
+table {
+	border-collapse: collapse;
+	line-height: 100%;
+}
+
+td {
+	border: solid 1px;
+}
+
+th {
+	border: solid 1px;
+	background-color: gainsboro;
+}
+
+div.formula {
+	border: 1px solid gray; 
+	padding: 10px;
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro W3", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+}
+-->
+</style>
+
+</head>
+
+<h1>導入</h1>
+
+<a name="abstract"><h2>概要</h2></a>
+
+<p>
+プログラミング言語Pythonによるプログラミングの学習を進め、様々なライブラリの使用方法を学習する。
+また、初歩の計算理論や計算量理論についても理解を深める。
+</p>
+
+<h1>Pythonの開発環境の構築</h1>
+<h2>Pythonのダウンロードとインストール</h2>
+<p>
+まずはPythonの実行系をインストールしよう。
+以下ではWindowsでの導入法を示す。
+他のOSの場合は<a href="https://www.sejuku.net/blog/33294">このサイト</a>を参照のこと。
+</p>
+
+<p>
+まず、Pythonの<a href="https://www.python.org/downloads/">ダウンロードサイト</a>にアクセスする。
+そこにある"Download Python 3.8.2"とあるボタンをクリックしてもダウンロードできるが、32bit用なので、64bit用が良ければ下図の"Windows"というところをクリックしてダウンロードサイトに移動する。
+</p>
+<img src="img1/python_download_1.png">
+
+<p>
+ダウンロードサイトにあるPython3.8.2のダウンロードリストから"Download Windows x86-64 executable installer"をクリックすればインストーラがダウンロードされる。
+インストーラを実行すると下図のような窓が開く（図では64bitだが、32bitでも構わない）。
+ここで、下のチェックボックス"Add Python 3.8 to PATH"にチェックを入れておくのを忘れずに。
+これはPythonのインストールフォルダを環境変数PATHに追加するもので、コマンドプロンプトでPythonがどのワーキングフォルダでも実行できるようになる。
+赤枠で囲んだ"Install Now"をクリックするとインストールが始まる。
+</p>
+<img src="img1/python_install_1.png">
+
+<p>
+何事もなければそれでインストールが完了するはずである。
+</p>
+<img src="img1/python_install_2.png">
+
+<h2>Pythonのライブラリのインストール</h2>
+<p>
+PythonにはpipというPythonパッケージを管理するためのツールがある。
+これを利用してnumpy, pandasなどのライブラリをインストールする。
+まずコマンドプロンプトを管理者モードで起動しよう。
+</p>
+
+<p>
+最初に、pipを最新版にアップグレードしておこう。
+コマンドプロンプトで以下のコマンドを入力する。
+</p>
+<div class="formula">
+python -m pip install --upgrade pip
+</div>
+
+<p>
+すると、下図のようにメッセージが現れ、アップグレードが完了する。
+</p>
+
+<img src="img1/pip_upgrade.png">
+
+<p>
+<font color="blue">コマンドを入力しても実行できない場合はPythonのインストールフォルダへのパスが環境変数に登録されていないことが考えられる。
+自分で環境変数を登録するか、Pythonを再インストールして環境変数の変更のチェックボックスにチェックを入れて再度インストールすること。</font>
+</p>
+
+<p>
+以下、(numpy,) pandas, matplotlibをインストールする（numpyは標準で入っている場合もあるので不要の可能性もあるが年のため）。
+下記のコマンドを入力する。
+</p>
+
+<div class="program">
+(python -m pip install numpy) <br>
+python -m pip install pandas <br>
+python -m pip install matplotlib
+</div>
+
+<p>
+ここまでインストールすると、開発環境のIDLEが使用できるようになっているはずである。
+早速起動して、以下のプログラムを入力してみよう。
+IDLEのシェルに一行ずつ入力していけばよい。
+</p>
+
+<div class="program">
+<pre>
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(-3, 3, 20)
+y = x ** 2
+
+plt.plot(x, y)
+plt.show()
+</pre>
+</div>
+
+<p>
+下図のようなグラフが現れれば成功である。
+</p>
+
+<img src="img1/intro_ex1.png">
+<p>
+<hr>
+<a href="index.html" target="_top">トップページへ</a>
+</p>
+
+</html>
